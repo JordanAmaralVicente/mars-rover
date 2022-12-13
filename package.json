@@ -1,18 +1,15 @@
 {
-    "name": "emana",
+    "name": "mars-rover",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
     "workspaces": {
         "packages": [
             "packages/*"
         ]
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "npm run test --workspace @emana/server --workspace @emana/web ",
         "start:web": "npm run start --workspace @emana/web",
         "start:server": "npm run start --workspace @emana/server"
     },
-    "author": "",
-    "license": "ISC"
+    "author": "Jordan Italo Amaral Faria"
 }
