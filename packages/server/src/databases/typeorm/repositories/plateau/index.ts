@@ -1,1 +1,1 @@
-export { PlateauController } from "./plateau.controller";
+export { PlateauController, PlateauControllerType } from "./plateau.controller";

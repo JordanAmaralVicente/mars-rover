@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Rover } from "./rover";
 
 @Entity({ name: "plateau" })
 export class Plateau {
@@ -10,4 +11,7 @@ export class Plateau {
 
     @Column({ name: "y_coord"})
     yCoordinate: number;
+
+    @OneToMany(() => Rover, (rover) => rover.plateau)
+    rovers: Rover[];
 }

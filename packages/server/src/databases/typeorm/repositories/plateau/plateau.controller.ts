@@ -10,3 +10,5 @@ export class PlateauController {
         return PlateauRepository.save(plateau);
     }
 }
+
+export type PlateauControllerType = typeof PlateauController;
