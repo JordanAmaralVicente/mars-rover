@@ -3,7 +3,7 @@ import { Rover } from "./rover";
 import { RoverAllowedMovements } from "../../../types/rover";
 import { RoverPosition } from "./position";
 
-@Entity({ name: "rover_movent" })
+@Entity({ name: "movement" })
 export class RoverMovement {
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -16,13 +16,14 @@ export class RoverMovement {
     movement: RoverAllowedMovements;
 
     @OneToOne(() => RoverPosition)
-    @JoinColumn()
+    @JoinColumn({ name: "start_position_fk" })
     startPosition: RoverPosition;
 
     @OneToOne(() => RoverPosition)
-    @JoinColumn()
+    @JoinColumn({ name: "final_position_fk" })
     finalPosition: RoverPosition;
 
     @ManyToOne(() => Rover, (rover) => rover.movements)
+    @JoinColumn({ name: "rover_fk" })
     rover: Rover;
 }

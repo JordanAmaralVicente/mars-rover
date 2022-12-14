@@ -16,14 +16,15 @@ export class Rover {
     id: string;
 
     @OneToOne(() => RoverPosition)
-    @JoinColumn()
+    @JoinColumn({ name: "start_position_fk" })
     startPosition: RoverPosition;
 
     @OneToOne(() => RoverPosition)
-    @JoinColumn()
+    @JoinColumn({ name: "current_position_fk" })
     currentPosition: RoverPosition;
 
     @ManyToOne(() => Plateau, (plateau) => plateau.rovers)
+    @JoinColumn({ name: "plateau_fk" })
     plateau: Plateau;
 
     @OneToMany(() => RoverMovement, (movement) => movement.rover)
