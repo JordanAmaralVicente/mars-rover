@@ -8,9 +8,9 @@ interface InitializePlateauDTO {
 }
 
 async function initializePlateauController(req: Request, res: Response) {
-    const body = req.body as InitializePlateauDTO;
+    const { posX, posY } = req.body as InitializePlateauDTO;
 
-    if (!body) {
+    if (!posX || !posY) {
         return res.status(HTTP_STATUSES.BAD_REQUEST).json({
             error: {
                 message: "Required data not provided!",
@@ -18,7 +18,7 @@ async function initializePlateauController(req: Request, res: Response) {
         });
     }
 
-    const initializedPlateau = await initializePlateau(body.posX, body.posY);
+    const initializedPlateau = await initializePlateau(posX, posY);
 
     return res.status(HTTP_STATUSES.CREATED).json({
         initializedPlateau,

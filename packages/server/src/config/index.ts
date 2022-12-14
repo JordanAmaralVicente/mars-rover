@@ -15,7 +15,7 @@ interface ServerConfig {
 
 export const serverConfig: ServerConfig = {
     application: {
-        port: 3000,
+        port: 8080,
     },
     database: {
         typeorm: {
