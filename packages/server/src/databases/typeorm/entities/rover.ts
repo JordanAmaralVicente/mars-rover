@@ -4,7 +4,7 @@ import {
     ManyToOne,
     OneToOne,
     JoinColumn,
-    OneToMany
+    OneToMany,
 } from "typeorm";
 import { RoverMovement } from "./movement";
 import { Plateau } from "./plateau";

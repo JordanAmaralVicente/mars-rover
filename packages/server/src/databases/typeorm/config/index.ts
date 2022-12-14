@@ -1,12 +1,7 @@
 import { DataSource } from "typeorm";
 import { serverConfig } from "../../../config";
 
-import {
-    Plateau,
-    RoverPosition,
-    Rover,
-    RoverMovement,
-} from "../entities";
+import { Plateau, RoverPosition, Rover, RoverMovement } from "../entities";
 
 import {
     CreatePlateauTable1670972876571,
@@ -19,12 +14,7 @@ export const DataBaseSource = new DataSource({
     ...serverConfig.database.typeorm,
     synchronize: false,
     logging: true,
-    entities: [
-        Plateau,
-        RoverPosition,
-        Rover,
-        RoverMovement,
-    ],
+    entities: [Plateau, RoverPosition, Rover, RoverMovement],
     migrations: [
         CreatePlateauTable1670972876571,
         CreatePositionTable1671025703359,

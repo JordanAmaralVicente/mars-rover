@@ -9,7 +9,7 @@ export class Plateau {
     @Column({ name: "x_coord" })
     xCoordinate: number;
 
-    @Column({ name: "y_coord"})
+    @Column({ name: "y_coord" })
     yCoordinate: number;
 
     @OneToMany(() => Rover, (rover) => rover.plateau)

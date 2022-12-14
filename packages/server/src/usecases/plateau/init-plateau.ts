@@ -5,15 +5,15 @@ interface DI {
     plateauController: PlateauControllerType;
 }
 
-const createInitPlateau = ({
-    plateauController,
-}: DI) => async (posX: number, posY: number): Promise<Plateau> => {
-    const plateau = await plateauController.save({
-        xCoordinate: posX,
-        yCoordinate: posY,
-    });
+const createInitPlateau =
+    ({ plateauController }: DI) =>
+    async (posX: number, posY: number): Promise<Plateau> => {
+        const plateau = await plateauController.save({
+            xCoordinate: posX,
+            yCoordinate: posY,
+        });
 
-    return plateau;
-};
+        return plateau;
+    };
 
 export default createInitPlateau;

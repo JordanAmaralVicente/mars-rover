@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    ManyToOne,
+    OneToOne,
+    JoinColumn,
+} from "typeorm";
 import { Rover } from "./rover";
 import { RoverAllowedMovements } from "../../../types/rover";
 import { RoverPosition } from "./position";

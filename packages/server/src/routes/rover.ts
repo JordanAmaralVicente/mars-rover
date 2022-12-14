@@ -6,5 +6,4 @@ const router = Router();
 
 router.post("/", RoverController.initializeAndMoveRover);
 
-
 export default router;
