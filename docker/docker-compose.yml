@@ -1,0 +1,9 @@
+version: "3.1"
+services:
+  mars_hovers_db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: mars_rover
+    ports:
+      - 3306:3306
