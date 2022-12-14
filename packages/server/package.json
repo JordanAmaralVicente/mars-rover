@@ -1,22 +1,30 @@
 {
-    "name": "@emana/server",
-    "version": "1.0.0",
-    "main": "index.ts",
-    "scripts": {
-        "start:dev": "npx nodemon",
-        "test": "echo \"Error: no test specified\"",
-        "build": "rimraf ./build && tsc",
-        "start": "npm run build && node build/index.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "typescript": "^4.9.4"
-    },
-    "devDependencies": {
-        "@types/node": "^18.11.14",
-        "nodemon": "^2.0.20",
-        "rimraf": "^3.0.2",
-        "ts-node": "^10.9.1"
-    }
+   "name": "@emana/server",
+   "version": "1.0.0",
+   "main": "index.ts",
+   "scripts": {
+      "start:dev": "npm run migration:run && npx nodemon",
+      "test": "echo \"Error: no test specified\"",
+      "build": "rimraf ./build && tsc",
+      "start": "ts-node src/index.ts",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/databases/typeorm/config/index.ts"
+   },
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "express": "^4.18.2",
+      "mysql2": "^2.3.3",
+      "typeorm": "0.3.11",
+      "typescript": "^4.9.4",
+      "reflect-metadata": "^0.1.13"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.14",
+      "@types/node": "^16.11.10",
+      "nodemon": "^2.0.20",
+      "rimraf": "^3.0.2",
+      "ts-node": "10.7.0",
+      "typescript": "4.5.2"
+   }
 }
