@@ -8,9 +8,9 @@ interface InitializeAndMoveRoverDTO {
 }
 
 async function initializeAndMoveRover(req: Request, res: Response) {
-    const body = req.body as InitializeAndMoveRoverDTO;
+    const { posX, posY, movements } = req.body as InitializeAndMoveRoverDTO;
     
-    if (!body) {
+    if (!posX || !posY || !movements) {
         return res.status(HTTP_STATUSES.BAD_REQUEST).json({
             error: {
                 message: "Required data not provided!",
