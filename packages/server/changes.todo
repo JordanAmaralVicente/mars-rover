@@ -1,0 +1,3 @@
+- TODO: make all migrations
+- TODO: import all migrations and entities on data DataSource
+- TODO: finish rover movement api
