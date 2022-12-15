@@ -21,7 +21,14 @@ export class RoverController {
     }
 
     static async findById(id: string) {
-        return await RoverRepository.findOne({ where: { id } });
+        return await RoverRepository.findOne({
+            where: { id },
+            relations: {
+                plateau: true,
+                currentPosition: true,
+                startPosition: true,
+            },
+        });
     }
 
     static updateCurrentRoverPosition(
