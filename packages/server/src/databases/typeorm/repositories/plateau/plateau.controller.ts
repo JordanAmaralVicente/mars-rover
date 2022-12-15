@@ -6,6 +6,12 @@ export class PlateauController {
         return PlateauRepository.find();
     }
 
+    static findById(id: string) {
+        return PlateauRepository.findOneBy({
+            id,
+        });
+    }
+
     static save(plateau: Partial<Plateau>) {
         return PlateauRepository.save(plateau);
     }

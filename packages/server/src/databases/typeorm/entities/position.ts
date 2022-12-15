@@ -16,5 +16,5 @@ export class RoverPosition {
         type: "enum",
         enum: RoverHeadingDirections,
     })
-    head: string;
+    head: RoverHeadingDirections;
 }

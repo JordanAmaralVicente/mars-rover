@@ -1,5 +1,5 @@
 import { RoverRepository } from "./rover.repository";
-import { Rover } from "../../entities";
+import { Rover, RoverPosition } from "../../entities";
 
 export class RoverController {
     static findAll() {
@@ -11,13 +11,29 @@ export class RoverController {
             where: {
                 plateau: {
                     id,
-                }
-            }
+                },
+            },
         });
     }
 
     static save(rover: Partial<Rover>) {
         return RoverRepository.save(rover);
+    }
+
+    static async findById(id: string) {
+        return await RoverRepository.findOne({ where: { id } });
+    }
+
+    static updateCurrentRoverPosition(
+        id: string,
+        currentPosition: RoverPosition,
+    ) {
+        return RoverRepository.update(
+            { id },
+            {
+                currentPosition,
+            },
+        );
     }
 }
 
