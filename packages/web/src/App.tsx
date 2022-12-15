@@ -1,11 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import Rover from "./assets/images/rover.jpg";
+import "./App.css";
+import { Navbar } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Navbar />
+      <header
+        className="App-header"
+        style={{
+          backgroundImage: `url('${Rover}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
