@@ -19,7 +19,7 @@ export const REPL = (props: REPLProps): JSX.Element => {
 
     try {
       const result = await props.onSendCommand(command);
-      newMessages.push({ message: result, type: "received" });
+      if (result) newMessages.push({ message: result, type: "received" });
     } catch (error) {}
 
     setMessages(newMessages);
