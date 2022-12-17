@@ -1,35 +1,29 @@
-import React from "react";
-import logo from "./logo.svg";
-import Rover from "./assets/images/rover.jpg";
-import "./App.css";
+import { ReactNode } from "react";
 import { Navbar } from "./components";
+import NasaLogo from "./assets/images/nasa-logo.svg";
 
-function App() {
+interface AppProps {
+  children?: ReactNode;
+}
+
+function App(props: AppProps) {
+  const { children } = props;
+
   return (
-    <div className="App">
-      <Navbar />
-      <header
-        className="App-header"
-        style={{
-          backgroundImage: `url('${Rover}')`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <Navbar
+          rightTitle="Making the mankind Interplanetary"
+          leftImage={{
+            src: NasaLogo,
+            width: 64,
+            height: 64,
+            alt: "Logotipo from Nasa",
+          }}
+        />
       </header>
-    </div>
+      {children}
+    </>
   );
 }
 
