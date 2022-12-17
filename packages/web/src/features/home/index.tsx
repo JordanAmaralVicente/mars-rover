@@ -1,6 +1,6 @@
 import RoverBGImage from "../../assets/images/rover.jpg";
 import { BannerWithImage } from "../../components/";
-import { MainMessage } from "./components";
+import { AboutMeTrack, MainMessage } from "./components";
 
 export function HomePage(): JSX.Element {
   return (
@@ -13,6 +13,7 @@ export function HomePage(): JSX.Element {
       >
         <MainMessage />
       </BannerWithImage>
+      <AboutMeTrack />
     </>
   );
 }
