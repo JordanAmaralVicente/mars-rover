@@ -1,64 +1,53 @@
-import { Box, Button, styled, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-
-const CommandsContainer = styled(Box)(() => ({
-  height: "15%",
-  width: "100%",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+import { useState, KeyboardEvent, ChangeEvent } from "react";
+import {
+  CommandsContainer,
+  CommandsTextField,
+  CommandsButton,
+} from "./styled-components";
 
 interface CommandsContainerProps {
   onSendCommand: (command: string) => any;
   disabled?: boolean;
+  buttonLabel?: string;
+  placeholder?: string;
 }
 
-export const CommandsContainter = (props: CommandsContainerProps) => {
+export const CommandsInput = (props: CommandsContainerProps) => {
   const [command, setCommand] = useState("");
 
   const handleOnSendCommand = () => {
-    props.onSendCommand(command);
+    if (!command) return;
+
+    const auxCommand = `${command}`;
+
     setCommand("");
+    props.onSendCommand(auxCommand);
   };
 
-  useEffect(() => {
-    document
-      .getElementById("command-text-field")
-      ?.addEventListener("keypress", (e) => {
-        if (e.code === "Enter") {
-          handleOnSendCommand();
-        }
-      });
-  });
+  const handleOnKeyDown = (e: KeyboardEvent) => {
+    if (e.code === "Enter") handleOnSendCommand();
+  };
+
+  const handleOnChangeTextField = (e: ChangeEvent<HTMLInputElement>) => {
+    setCommand(e.target.value);
+  };
 
   return (
     <CommandsContainer>
-      <TextField
+      <CommandsTextField
         value={command}
-        placeholder="Insert the comands here"
-        onChange={(e) => {
-          setCommand(e.target.value);
-        }}
-        onKeyDown={(e) => {
-          if (e.code === "Enter") {
-            handleOnSendCommand();
-          }
-        }}
-        style={{
-          width: "80%",
-          marginRight: "8px",
-        }}
+        placeholder={props.placeholder || "Insert commands here"}
+        onChange={handleOnChangeTextField}
+        onKeyDown={handleOnKeyDown}
         disabled={props.disabled}
       />
-      <Button
+      <CommandsButton
         variant="contained"
         onClick={handleOnSendCommand}
         disabled={props.disabled}
       >
-        Enviar
-      </Button>
+        {props.buttonLabel || "Send"}
+      </CommandsButton>
     </CommandsContainer>
   );
 };

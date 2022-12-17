@@ -1,48 +1,19 @@
-import { Box, styled } from "@mui/material";
+import { Message } from "../types";
+import { MessageComponent } from "./message-component";
+import { MessageScreenContainer } from "./styled-components";
 
-const OuterContainer = styled(Box)(() => ({
-  maxHeight: "425px",
-  height: "100%",
-  overflowY: "auto",
-  backgroundColor: "blue",
-}));
-
-export type MessageType = "received" | "sent";
-
-export interface Message {
-  message: string;
-  type: MessageType;
-}
-
-export interface MessageContainerProps {
+export interface MessageScreenProps {
   messages: Message[];
 }
 
-export const MessageComponent = (message: Message) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: message.type === "received" ? "flex-start" : "flex-end",
-      }}
-    >
-      {message.message}
-    </Box>
-  );
-};
+export const MessageScreen = (props: MessageScreenProps) => {
+  const { messages } = props;
 
-export const MessageContainer = (props: MessageContainerProps) => {
   return (
-    <OuterContainer>
-      {props.messages.map((message, index) => (
-        <MessageComponent
-          key={index}
-          message={message.message}
-          type={message.type}
-        />
+    <MessageScreenContainer>
+      {messages.map(({ message, type }, index) => (
+        <MessageComponent key={index} message={message} type={type} />
       ))}
-    </OuterContainer>
+    </MessageScreenContainer>
   );
 };

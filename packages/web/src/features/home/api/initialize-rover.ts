@@ -1,20 +1,19 @@
 import axios from "axios";
 import { appConfig } from "../../../config";
+import { RoverHeadingDirections, RoverPosition } from "../../../types/rover";
 
 interface InitRoverOpt {
   posX: number;
   posY: number;
-  head: "N" | "S" | "E" | "W";
+  head: RoverHeadingDirections;
   movements: string;
   plateauId: string;
 }
 
 interface InitRoverResponse {
-  currentPosition: {
-    head: "N" | "S" | "E" | "W";
-    id: string;
-    xCoordinate: number;
-    yCoordinate: number;
+  currentPosition: RoverPosition;
+  error?: {
+    message: string;
   };
 }
 

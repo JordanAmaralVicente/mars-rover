@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
 import { useState } from "react";
-import { CommandsContainter } from "./commands";
-import { MessageContainer, Message } from "./messages";
+import { CommandsInput } from "./commands";
+import { MessageScreen } from "./messages/";
+import { Message } from "./types";
 
 interface REPLProps {
   onSendCommand: (command: string) => Promise<string>;
@@ -33,8 +34,8 @@ export const REPL = (props: REPLProps): JSX.Element => {
         margin: "2px",
       }}
     >
-      <MessageContainer messages={messages} />
-      <CommandsContainter onSendCommand={handleOnSendCommand} />
+      <MessageScreen messages={messages} />
+      <CommandsInput onSendCommand={handleOnSendCommand} />
     </Box>
   );
 };

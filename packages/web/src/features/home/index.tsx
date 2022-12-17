@@ -2,6 +2,8 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import RoverBGImage from "../../assets/images/rover.jpg";
 import { BannerWithImage, Terminal } from "../../components/";
+import theme from "../../theme";
+import { RoverHeadingDirections } from "../../types/rover";
 import { initPlateau } from "./api/initialize-plateau";
 import { initAndMoveRover } from "./api/initialize-rover";
 import { AboutMeTrack, MainMessage } from "./components";
@@ -29,7 +31,7 @@ export function HomePage(): JSX.Element {
   const handleOnSendCommand = async (command: string) => {
     const [x, y, head, movements] = command.trim().split(" ");
 
-    const parsedHead = head as "N" | "W" | "E" | "S";
+    const parsedHead = head as RoverHeadingDirections;
 
     const response = await initAndMoveRover({
       posX: Number(x),
@@ -59,6 +61,7 @@ export function HomePage(): JSX.Element {
         sx={{
           display: "flex",
           flexDirection: "column",
+          backgroundColor: theme.color.darkBackground,
         }}
       >
         <Terminal
