@@ -6,7 +6,7 @@ import {
     RoverPosition,
 } from "../../databases/typeorm/entities";
 import { MountAndSaveRover } from "../../services/rover/mount-and-save-rover";
-import { MounAndSaveRoverPosition } from "../../services/position/mount-and-rover-position";
+import { MountAndSaveRoverPosition } from "../../services/position/mount-and-rover-position";
 import { RoverHeadingDirections } from "../../types";
 
 export const PLATEAU_EXISTENT_ID = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d";
@@ -51,7 +51,7 @@ export const mockMountAndSaveRover: MountAndSaveRover = async function (
     return rover;
 };
 
-export const mockMountAndSaveRoverPosition: MounAndSaveRoverPosition =
+export const mockMountAndSaveRoverPosition: MountAndSaveRoverPosition =
     async function (posX: number, posY: number, head: RoverHeadingDirections) {
         const position = new RoverPosition();
 

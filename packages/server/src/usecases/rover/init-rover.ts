@@ -1,5 +1,5 @@
 import { PlateauControllerType } from "../../databases/typeorm/repositories";
-import { MounAndSaveRoverPosition } from "../../services/position/mount-and-rover-position";
+import { MountAndSaveRoverPosition } from "../../services/position/mount-and-rover-position";
 import { MountAndSaveRover } from "../../services/rover/mount-and-save-rover";
 import { RoverHeadingDirections } from "../../types/rover";
 import { isRoverOutOfBound } from "../../utils";
@@ -7,7 +7,7 @@ import { mountErrorObject } from "../../utils/error-object";
 
 interface DI {
     plateauController: PlateauControllerType;
-    mountAndSaveRoverPosition: MounAndSaveRoverPosition;
+    mountAndSaveRoverPosition: MountAndSaveRoverPosition;
     mountAndSaveRover: MountAndSaveRover;
 }
 
