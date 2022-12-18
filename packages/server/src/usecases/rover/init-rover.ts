@@ -1,15 +1,18 @@
 import { PlateauControllerType } from "../../databases/typeorm/repositories";
-import { mountAndSaveRoverPosition } from "../../services/position/mount-and-rover-position";
-import { mountAndSaveRover } from "../../services/rover/mount-and-save-rover";
+import { MounAndSaveRoverPosition } from "../../services/position/mount-and-rover-position";
+import { MountAndSaveRover } from "../../services/rover/mount-and-save-rover";
 import { RoverHeadingDirections } from "../../types/rover";
+import { isRoverOutOfBound } from "../../utils";
 import { mountErrorObject } from "../../utils/error-object";
 
 interface DI {
     plateauController: PlateauControllerType;
+    mountAndSaveRoverPosition: MounAndSaveRoverPosition;
+    mountAndSaveRover: MountAndSaveRover;
 }
 
 const createInitRover =
-    ({ plateauController }: DI) =>
+    ({ plateauController, mountAndSaveRoverPosition, mountAndSaveRover }: DI) =>
     async (
         plateauId: string,
         posX: number,
@@ -26,6 +29,23 @@ const createInitRover =
         }
 
         const roverPosition = await mountAndSaveRoverPosition(posX, posY, head);
+
+        const isRoverOutOfBounOnX = isRoverOutOfBound(
+            roverPosition,
+            "xCoordinate",
+            plateau,
+        );
+        const isRoverOutOfBounOnY = isRoverOutOfBound(
+            roverPosition,
+            "yCoordinate",
+            plateau,
+        );
+        if (isRoverOutOfBounOnX || isRoverOutOfBounOnY) {
+            return mountErrorObject(
+                "The Rover Landind position is out of bound",
+            );
+        }
+
         const newRover = await mountAndSaveRover(
             roverPosition,
             roverPosition,
