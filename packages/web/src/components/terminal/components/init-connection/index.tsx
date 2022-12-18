@@ -1,6 +1,9 @@
 import { ChangeEvent, useState } from "react";
-import { StyledButton, StyledTextField } from "../styled-components";
-import { CenteredContainer } from "../../../common";
+import {
+  CenteredContainer,
+  StyledButton,
+  StyledTextField,
+} from "../../../common";
 
 interface InitTerminalProps {
   onClickInit: (connectionString: string) => void;
@@ -20,7 +23,7 @@ export const InitTerminal = (props: InitTerminalProps): JSX.Element => {
   };
 
   return (
-    <CenteredContainer>
+    <CenteredContainer sx={{ height: "100%" }}>
       <StyledTextField
         placeholder={props.connectionPlaceholder || "insert connection string"}
         onChange={handleOnChangeTextField}

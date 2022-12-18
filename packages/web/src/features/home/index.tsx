@@ -48,12 +48,7 @@ export function HomePage(): JSX.Element {
 
   return (
     <>
-      <BannerWithImage
-        imgSrc={RoverBGImage}
-        style={{
-          height: "400px",
-        }}
-      >
+      <BannerWithImage imgSrc={RoverBGImage} style={{ height: "400px" }}>
         <MainMessage />
       </BannerWithImage>
       <AboutMeTrack />

@@ -1,9 +1,6 @@
 import { useState, KeyboardEvent, ChangeEvent } from "react";
-import {
-  CommandsContainer,
-  CommandsTextField,
-  CommandsButton,
-} from "./styled-components";
+import { CommandsContainer } from "../../styled-components";
+import { StyledButton, StyledTextField } from "../../../../common";
 
 interface CommandsContainerProps {
   onSendCommand: (command: string) => any;
@@ -34,20 +31,21 @@ export const CommandsInput = (props: CommandsContainerProps) => {
 
   return (
     <CommandsContainer>
-      <CommandsTextField
+      <StyledTextField
         value={command}
         placeholder={props.placeholder || "Insert commands here"}
         onChange={handleOnChangeTextField}
         onKeyDown={handleOnKeyDown}
         disabled={props.disabled}
+        sx={{ width: "80%", marginRight: "8px" }}
       />
-      <CommandsButton
+      <StyledButton
         variant="contained"
         onClick={handleOnSendCommand}
         disabled={props.disabled}
       >
         {props.buttonLabel || "Send"}
-      </CommandsButton>
+      </StyledButton>
     </CommandsContainer>
   );
 };

@@ -1,4 +1,4 @@
-import { Box, Button, styled, TextField } from "@mui/material";
+import { Box, styled } from "@mui/material";
 
 export const TerminalOuterContainer = styled(Box)(() => ({
   margin: "64px",
@@ -16,12 +16,55 @@ export const TerminalInnerContainer = styled(Box)(() => ({
   backgroundColor: "#ededed",
 }));
 
-export const StyledButton = styled(Button)(() => ({
-  fontWeight: "bold",
-  padding: "16px",
-  backgroundColor: "#550c18",
+export const MessageScreenContainer = styled(Box)(() => ({
+  maxHeight: "425px",
+  height: "100%",
+  overflowY: "auto",
+  padding: "8px",
+  boxSizing: "border-box",
 }));
 
-export const StyledTextField = styled(TextField)(() => ({
+export const MessageScreenInnerContainer = styled(Box)(() => ({
+  borderRadius: "6px",
   backgroundColor: "white",
+  height: "100%",
+  padding: "8px",
+  boxSizing: "border-box",
+  border: "1px solid rgb(133, 133, 133)",
+}));
+
+export const MessageComponentContainer = styled(Box)(() => ({
+  display: "flex",
+  width: "100%",
+  flexDirection: "row",
+  backgroundColor: "white",
+  color: "black",
+}));
+
+export const MessageComponentInnerContainer = styled(Box)(() => ({
+  margin: "2px",
+
+  color: "white",
+  borderRadius: "6px",
+  padding: "8px",
+
+  "&.sent": {
+    backgroundColor: "#F7DAD9",
+    color: "black",
+  },
+
+  "&.received": {
+    backgroundColor: "#550c18",
+  },
+}));
+
+export const CommandsContainer = styled(Box)(() => ({
+  height: "15%",
+  width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "1px solid rgb(133, 133, 133)",
+  borderWidth: "1px 0 0",
 }));
