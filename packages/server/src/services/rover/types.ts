@@ -1,10 +1,11 @@
 import { Rover, Plateau } from "../../databases/typeorm/entities";
 import { RoverHeadingDirections } from "../../types/rover";
+import { ErrorObject } from "../../utils";
 
 export type MoveRoverFunctionType = (
     rover: Rover,
     plateau: Plateau,
-) => Promise<any>;
+) => Promise<Rover | ErrorObject>;
 
 export type RoverDirection = "yCoordinate" | "xCoordinate";
 

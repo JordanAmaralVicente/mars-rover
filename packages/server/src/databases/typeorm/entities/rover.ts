@@ -28,5 +28,5 @@ export class Rover {
     plateau: Plateau;
 
     @OneToMany(() => RoverMovement, (movement) => movement.rover)
-    movements: RoverMovement[];
+    movements?: RoverMovement[];
 }

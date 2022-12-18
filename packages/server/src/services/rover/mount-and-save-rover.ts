@@ -18,3 +18,5 @@ export async function mountAndSaveRover(
 
     return RoverController.save(rover);
 }
+
+export type MountAndSaveRover = typeof mountAndSaveRover;

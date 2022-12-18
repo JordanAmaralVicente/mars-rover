@@ -21,3 +21,5 @@ export async function mountAndSaveRoverMovement(
 
     return RoverMovementController.save(movement);
 }
+
+export type MountAndSaveRoverMovement = typeof mountAndSaveRoverMovement;

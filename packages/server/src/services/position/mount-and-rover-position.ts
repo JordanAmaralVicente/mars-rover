@@ -15,3 +15,5 @@ export async function mountAndSaveRoverPosition(
 
     return RoverPositionController.save(position);
 }
+
+export type MountAndSaveRoverPosition = typeof mountAndSaveRoverPosition;
