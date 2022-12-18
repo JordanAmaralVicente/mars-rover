@@ -1,0 +1,22 @@
+digraph "mars_rover_db" {
+
+splines  = ortho;
+fontname = "Inconsolata";
+
+node [colorscheme = ylgnbu4];
+edge [colorscheme = dark28, dir = both];
+
+migrations [shape = record, label = "{ migrations |  timestamp : bigint\l  name : varchar(255)\l| id : int\l }"];
+movement   [shape = record, label = "{ movement |  movement : enum('l', 'r', 'm')\l  start_position_fk : varchar(255)\l  final_position_fk : varchar(255)\l  rover_fk : varchar(255)\l| id : varchar(255)\l }"];
+plateau    [shape = record, label = "{ plateau |  x_coord : int\l  y_coord : int\l  created_at : timestamp\l| id : varchar(255)\l }"];
+position   [shape = record, label = "{ position |  x_coord : int\l  y_coord : int\l  head : enum('n', 's', 'w', 'e')\l| id : varchar(255)\l }"];
+rover      [shape = record, label = "{ rover |  start_position_fk : varchar(255)\l  current_position_fk : varchar(255)\l  plateau_fk : varchar(255)\l| id : varchar(255)\l }"];
+
+movement   -> position   [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "final_position_fk:id", headlabel = ""];
+movement   -> position   [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "start_position_fk:id", headlabel = ""];
+movement   -> rover      [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "rover_fk:id", headlabel = ""];
+rover      -> plateau    [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "plateau_fk:id", headlabel = ""];
+rover      -> position   [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "start_position_fk:id", headlabel = ""];
+rover      -> position   [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "current_position_fk:id", headlabel = ""];
+
+}
