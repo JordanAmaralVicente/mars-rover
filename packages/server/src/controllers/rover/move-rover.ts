@@ -1,21 +1,17 @@
 import { Request, Response } from "express";
 import { HTTP_STATUSES } from "../../types/http-codes";
 import { RoverHeadingDirections } from "../../types/rover";
-import { initAndMoveRover } from "../../usecases/rover";
+import { moveRover } from "../../usecases/rover";
 
-interface InitializeAndMoveRoverDTO {
-    posX: number;
-    posY: number;
-    head: RoverHeadingDirections;
+interface InitializeRoverDTO {
     movements: string;
-    plateauId: string;
+    roverId: string;
 }
 
-async function initializeAndMoveRoverController(req: Request, res: Response) {
-    const { posX, posY, movements, head, plateauId } =
-        req.body as InitializeAndMoveRoverDTO;
+async function initializeRoverController(req: Request, res: Response) {
+    const { roverId, movements } = req.body as InitializeRoverDTO;
 
-    if (!movements || !plateauId || !head) {
+    if (!roverId || !movements) {
         return res.status(HTTP_STATUSES.BAD_REQUEST).json({
             error: {
                 message: "Required data not provided!",
@@ -23,13 +19,7 @@ async function initializeAndMoveRoverController(req: Request, res: Response) {
         });
     }
 
-    const result = await initAndMoveRover(
-        plateauId,
-        posX,
-        posY,
-        head,
-        movements,
-    );
+    const result = await moveRover(roverId, movements);
 
     const resultStatus = result?.error
         ? HTTP_STATUSES.BAD_REQUEST
@@ -40,4 +30,4 @@ async function initializeAndMoveRoverController(req: Request, res: Response) {
     });
 }
 
-export default initializeAndMoveRoverController;
+export default initializeRoverController;
