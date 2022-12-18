@@ -20,8 +20,10 @@ export const MessageScreenContainer = styled(Box)(() => ({
   maxHeight: "425px",
   height: "100%",
   overflowY: "auto",
-  padding: "8px",
+  padding: "8px 8px 24px",
   boxSizing: "border-box",
+
+  position: "relative",
 }));
 
 export const MessageScreenInnerContainer = styled(Box)(() => ({
@@ -31,8 +33,8 @@ export const MessageScreenInnerContainer = styled(Box)(() => ({
   padding: "8px",
   boxSizing: "border-box",
   border: "1px solid rgb(133, 133, 133)",
-
-  position: "relative",
+  maxHeight: "410px",
+  overflowY: "auto",
 }));
 
 export const MessageScreenErrorMessage = styled(Box)(() => ({

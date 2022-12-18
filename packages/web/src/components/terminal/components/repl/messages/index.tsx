@@ -24,12 +24,12 @@ export const MessageScreen = (props: MessageScreenProps) => {
             className={message.type}
           />
         ))}
-        {!!errorMessage && (
-          <MessageScreenErrorMessage>
-            error: {errorMessage}
-          </MessageScreenErrorMessage>
-        )}
       </MessageScreenInnerContainer>
+      {!!errorMessage && (
+        <MessageScreenErrorMessage>
+          error: {errorMessage}
+        </MessageScreenErrorMessage>
+      )}
     </MessageScreenContainer>
   );
 };
