@@ -1,11 +1,13 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { Track } from "../../../components";
 import JordanImage from "../../../assets/images/jordan.jpeg";
 import theme from "../../../theme";
 
 export const AboutMeTrack = () => {
+  const standardTheme = useTheme();
+
   return (
-    <Track style={{ backgroundColor: theme.color.primary, height: "128px" }}>
+    <Track style={{ backgroundColor: theme.color.primary }}>
       <Box
         sx={{
           display: "flex",
@@ -14,6 +16,10 @@ export const AboutMeTrack = () => {
           width: "50%",
           justifyContent: "center",
           alignItems: "center",
+
+          [standardTheme.breakpoints.down("md")]: {
+            marginBottom: "32px",
+          },
         }}
       >
         <Typography
