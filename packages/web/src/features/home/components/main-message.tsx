@@ -1,7 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import theme from "../../../theme";
 
 export const MainMessage = () => {
+  const standardTheme = useTheme();
+
   return (
     <Box
       sx={{
@@ -10,6 +12,10 @@ export const MainMessage = () => {
         maxWidth: "300px",
         padding: theme.layout.padding,
         margin: "64px",
+
+        [standardTheme.breakpoints.down("sm")]: {
+          margin: "32px",
+        },
       }}
     >
       <Typography

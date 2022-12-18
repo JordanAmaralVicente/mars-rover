@@ -26,6 +26,7 @@ export const AboutMeTrack = () => {
           sx={{
             fontWeight: "bold",
             fontSize: "20px",
+            textAlign: "center",
           }}
         >
           About the developer
@@ -57,6 +58,10 @@ export const AboutMeTrack = () => {
           flexDirection: "column",
           color: "white",
           width: "50%",
+
+          [standardTheme.breakpoints.down("sm")]: {
+            width: "70%",
+          },
         }}
       >
         <Typography>

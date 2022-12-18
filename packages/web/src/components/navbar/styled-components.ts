@@ -1,7 +1,6 @@
 import { Box, styled } from "@mui/material";
-import theme from "../../theme/";
 
-export const OuterContainer = styled(Box)(() => ({
+export const OuterContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "72px",
   boxSizing: "border-box",
@@ -11,10 +10,11 @@ export const OuterContainer = styled(Box)(() => ({
   justifyContent: "space-between",
   alignItems: "center",
 
-  position: "sticky",
-  top: 0,
+  backgroundColor: "#282828",
 
-  backgroundColor: theme.color.darkBackground,
+  [theme.breakpoints.down("sm")]: {
+    height: "unset",
+  },
 }));
 
 export const InnerContainer = styled(Box)(() => ({

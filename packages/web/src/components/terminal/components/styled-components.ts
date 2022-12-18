@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 
 export const TerminalOuterContainer = styled(Box)(() => ({
-  margin: "64px",
+  margin: "64px 32px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -58,7 +58,7 @@ export const MessageComponentInnerContainer = styled(Box)(() => ({
   },
 }));
 
-export const CommandsContainer = styled(Box)(() => ({
+export const CommandsContainer = styled(Box)(({ theme }) => ({
   height: "15%",
   width: "100%",
   display: "flex",
@@ -67,4 +67,6 @@ export const CommandsContainer = styled(Box)(() => ({
   justifyContent: "center",
   border: "1px solid rgb(133, 133, 133)",
   borderWidth: "1px 0 0",
+  padding: "8px",
+  boxSizing: "border-box",
 }));
