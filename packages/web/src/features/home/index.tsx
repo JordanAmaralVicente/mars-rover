@@ -4,15 +4,13 @@ import RoverBGImage from "../../assets/images/rover.jpg";
 import { BannerWithImage, Terminal } from "../../components/";
 import theme from "../../theme";
 import { RoverHeadingDirections } from "../../types/rover";
-import { initPlateau } from "./api/initialize-plateau";
-import { initAndMoveRover } from "./api/initialize-rover";
+import { initPlateau, initRover, moveRover } from "./api/";
 import { AboutMeTrack, MainMessage } from "./components";
 
 export function HomePage(): JSX.Element {
   const [plateauId, setPlateauId] = useState<string>("");
-
-  // TODO: use it when it has two apis
-  // const [messagesControl, setMessagesControl] = useState<number>(0);
+  const [roverId, setRoverId] = useState<string>("");
+  const [roverInitialized, setRoverInitialized] = useState<boolean>(false);
 
   const handleOnClickInitTerminal = async (connectionString: string) => {
     const [x, y] = connectionString.trim().split(" ");
@@ -28,21 +26,38 @@ export function HomePage(): JSX.Element {
   };
 
   const handleOnSendCommand = async (command: string) => {
-    const [x, y, head, movements] = command.trim().split(" ");
+    if (!roverInitialized) {
+      const [x, y, head] = command.trim().split(" ");
 
-    const parsedHead = head as RoverHeadingDirections;
+      const parsedHead = head as RoverHeadingDirections;
+      const posX = Number(x);
+      const posY = Number(y);
 
-    const response = await initAndMoveRover({
-      posX: Number(x),
-      posY: Number(y),
-      head: parsedHead,
-      movements,
-      plateauId,
-    });
+      const response = await initRover({
+        posX,
+        posY,
+        head: parsedHead,
+        plateauId,
+      });
 
-    const { currentPosition } = response.data;
+      const { startPosition } = response.data;
 
-    return `Final Rover position: x: ${currentPosition.xCoordinate}, y: ${currentPosition.yCoordinate}, head: ${currentPosition.head}`;
+      setRoverId(response.data.id);
+      setRoverInitialized(true);
+
+      return `Rover has landed at: x ${startPosition.xCoordinate}, y ${startPosition.yCoordinate}`;
+    } else {
+      const response = await moveRover({
+        movements: command.trim(),
+        roverId,
+      });
+
+      const { currentPosition } = response.data;
+
+      setRoverInitialized(false);
+      setRoverId("");
+      return `Final Rover position: x: ${currentPosition.xCoordinate}, y: ${currentPosition.yCoordinate}, head: ${currentPosition.head}`;
+    }
   };
 
   return (

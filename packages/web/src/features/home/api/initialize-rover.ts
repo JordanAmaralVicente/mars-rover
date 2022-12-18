@@ -6,17 +6,17 @@ interface InitRoverOpt {
   posX: number;
   posY: number;
   head: RoverHeadingDirections;
-  movements: string;
   plateauId: string;
 }
 
 interface InitRoverResponse {
-  currentPosition: RoverPosition;
+  id: string;
+  startPosition: RoverPosition;
   error?: {
     message: string;
   };
 }
 
-export function initAndMoveRover(data: InitRoverOpt) {
-  return axios.post<InitRoverResponse>(`${appConfig.api.url}/rover/`, data);
+export function initRover(data: InitRoverOpt) {
+  return axios.put<InitRoverResponse>(`${appConfig.api.url}/rover/init`, data);
 }
