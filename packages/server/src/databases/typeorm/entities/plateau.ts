@@ -13,5 +13,5 @@ export class Plateau {
     yCoordinate: number;
 
     @OneToMany(() => Rover, (rover) => rover.plateau)
-    rovers: Rover[];
+    rovers?: Rover[];
 }
