@@ -7,4 +7,5 @@ export const DataBaseSource = new DataSource({
     logging: true,
     type: "mysql",
     migrationsTableName: "migrations",
+    connectTimeout: 15 * 1000,
 });

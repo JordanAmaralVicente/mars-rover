@@ -37,7 +37,7 @@ export const serverConfig: ServerConfig = {
             username: parseEnvStr("TYPEORM_USERNAME", "root"),
             password: parseEnvStr("TYPEORM_PASSWORD", "admin"),
             port: parseEnvInt("TYPEORM_PORT", 3306),
-            database: parseEnvStr("TYPEORM_DATABASE", "mars_rover_db"),
+            database: parseEnvStr("TYPEORM_DATABASE", "mars_rover"),
             host: parseEnvStr("TYPEORM_HOST", "localhost"),
             entities: [
                 parseEnvStr(
