@@ -9,23 +9,22 @@ import { initAndMoveRover } from "./api/initialize-rover";
 import { AboutMeTrack, MainMessage } from "./components";
 
 export function HomePage(): JSX.Element {
-  const [plateauId, setPlateauId] = useState<string>(
-    "75f26f0c-7b56-4f49-b88d-460b164962c5"
-  );
+  const [plateauId, setPlateauId] = useState<string>("");
 
   // TODO: use it when it has two apis
   // const [messagesControl, setMessagesControl] = useState<number>(0);
 
   const handleOnClickInitTerminal = async (connectionString: string) => {
-    // const [x, y] = connectionString.trim().split(" ");
-    // const posX = Number(x);
-    // const posY = Number(y);
-    // const response = await initPlateau({ posX, posY });
-    // const { error, initializedPlateau } = response.data;
-    // if (!error && initializedPlateau) {
-    //   // TODO: fix type
-    //   setPlateauId(response?.data?.initializedPlateau?.id as string);
-    // }
+    const [x, y] = connectionString.trim().split(" ");
+
+    const posX = Number(x);
+    const posY = Number(y);
+
+    try {
+      const response = await initPlateau({ posX, posY });
+      const { initializedPlateau } = response.data;
+      setPlateauId(initializedPlateau?.id);
+    } catch (error) {}
   };
 
   const handleOnSendCommand = async (command: string) => {
@@ -43,7 +42,7 @@ export function HomePage(): JSX.Element {
 
     const { currentPosition } = response.data;
 
-    return `Posição final: X: ${currentPosition.xCoordinate}, Y: ${currentPosition.yCoordinate} | HEAD: ${currentPosition.head}`;
+    return `Final Rover position: x: ${currentPosition.xCoordinate}, y: ${currentPosition.yCoordinate}, head: ${currentPosition.head}`;
   };
 
   return (
@@ -62,6 +61,14 @@ export function HomePage(): JSX.Element {
         <Terminal
           onClickInitialize={handleOnClickInitTerminal}
           onSendCommand={handleOnSendCommand}
+          initTerminal={{
+            buttonLabel: "start",
+            placeholder: "insert plateau right-upper coords",
+          }}
+          repl={{
+            buttonLabel: "send",
+            placeholder: "rover command",
+          }}
         />
       </Box>
     </>

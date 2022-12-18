@@ -7,7 +7,7 @@ interface InitPlateauOpt {
 }
 
 interface InitPlateauResponse {
-  initializedPlateau?: {
+  initializedPlateau: {
     id: string;
     xCoordinate: number;
     yCoordinate: number;

@@ -31,6 +31,16 @@ export const MessageScreenInnerContainer = styled(Box)(() => ({
   padding: "8px",
   boxSizing: "border-box",
   border: "1px solid rgb(133, 133, 133)",
+
+  position: "relative",
+}));
+
+export const MessageScreenErrorMessage = styled(Box)(() => ({
+  bottom: "2px",
+  color: "red",
+  fontWeight: "bold",
+
+  position: "absolute",
 }));
 
 export const MessageComponentContainer = styled(Box)(() => ({

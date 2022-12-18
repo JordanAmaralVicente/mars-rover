@@ -3,14 +3,16 @@ import { MessageComponent } from "./message-component";
 import {
   MessageScreenContainer,
   MessageScreenInnerContainer,
+  MessageScreenErrorMessage,
 } from "../../styled-components";
 
 export interface MessageScreenProps {
   messages: Message[];
+  errorMessage?: string;
 }
 
 export const MessageScreen = (props: MessageScreenProps) => {
-  const { messages } = props;
+  const { messages, errorMessage } = props;
 
   return (
     <MessageScreenContainer>
@@ -22,6 +24,11 @@ export const MessageScreen = (props: MessageScreenProps) => {
             className={message.type}
           />
         ))}
+        {!!errorMessage && (
+          <MessageScreenErrorMessage>
+            error: {errorMessage}
+          </MessageScreenErrorMessage>
+        )}
       </MessageScreenInnerContainer>
     </MessageScreenContainer>
   );

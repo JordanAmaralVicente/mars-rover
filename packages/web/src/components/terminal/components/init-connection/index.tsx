@@ -8,7 +8,9 @@ import {
 interface InitTerminalProps {
   onClickInit: (connectionString: string) => void;
   buttonLabel?: string;
-  connectionPlaceholder?: string;
+  placeholder?: string;
+  errorMessage?: string;
+  isLoading?: boolean;
 }
 
 export const InitTerminal = (props: InitTerminalProps): JSX.Element => {
@@ -25,15 +27,16 @@ export const InitTerminal = (props: InitTerminalProps): JSX.Element => {
   return (
     <CenteredContainer sx={{ height: "100%" }}>
       <StyledTextField
-        placeholder={props.connectionPlaceholder || "insert connection string"}
+        placeholder={props.placeholder}
         onChange={handleOnChangeTextField}
         style={{
           background: "white",
           marginBottom: "16px",
+          width: "50%",
         }}
       />
       <StyledButton variant="contained" onClick={handleOnClickInitConnection}>
-        {props.buttonLabel || "Start Connection"}
+        {props.buttonLabel}
       </StyledButton>
     </CenteredContainer>
   );

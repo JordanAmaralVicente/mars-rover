@@ -1,12 +1,14 @@
 import { useState, KeyboardEvent, ChangeEvent } from "react";
 import { CommandsContainer } from "../../styled-components";
 import { StyledButton, StyledTextField } from "../../../../common";
+import { CircularProgress, InputAdornment } from "@mui/material";
 
 interface CommandsContainerProps {
   onSendCommand: (command: string) => any;
   disabled?: boolean;
   buttonLabel?: string;
   placeholder?: string;
+  isSending?: boolean;
 }
 
 export const CommandsInput = (props: CommandsContainerProps) => {
@@ -33,18 +35,29 @@ export const CommandsInput = (props: CommandsContainerProps) => {
     <CommandsContainer>
       <StyledTextField
         value={command}
-        placeholder={props.placeholder || "Insert commands here"}
+        placeholder={
+          props.isSending ? "sending" : props.placeholder || "type commands"
+        }
         onChange={handleOnChangeTextField}
         onKeyDown={handleOnKeyDown}
         disabled={props.disabled}
         sx={{ width: "80%", marginRight: "8px" }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" sx={{ margin: "8px" }}>
+              {props.isSending && (
+                <CircularProgress size={24} sx={{ color: "grey" }} />
+              )}
+            </InputAdornment>
+          ),
+        }}
       />
       <StyledButton
         variant="contained"
         onClick={handleOnSendCommand}
         disabled={props.disabled}
       >
-        {props.buttonLabel || "Send"}
+        {props.buttonLabel || "send"}
       </StyledButton>
     </CommandsContainer>
   );
