@@ -7,3 +7,22 @@ services:
       MYSQL_DATABASE: mars_rover
     ports:
       - 3306:3306
+
+  mars_rovers_server:
+    build:
+      context: ..
+      dockerfile: packages/server/Dockerfile
+    environment:
+      TYPEORM_USERNAME: root
+      TYPEORM_PASSWORD: admin
+      TYPEORM_DATABASE: mars_rover_db
+      TYPEORM_PORT: 3306
+      TYPEORM_CONNECTION: mysql
+      TYPEORM_HOST: mars_hovers_db
+      TYPEORM_LOGGING: "true"
+      TYPEORM_MIGRATIONS: build/databases/typeorm/migrations/**/*.js
+      TYPEORM_ENTITIES: build/databases/typeorm/entities/**/*.js
+    depends_on:
+      - mars_hovers_db
+    ports:
+      - 8080:8080

@@ -1,7 +1,20 @@
+import "dotenv/config";
+
+function parseEnvStr(env: string, defaultEnv?: string): string {
+    return process.env[env] || defaultEnv;
+}
+
+function parseEnvInt(env: string, defaultEnv?: number): number {
+    if (env in process.env) {
+        return parseInt(process.env[env], 10);
+    }
+    return defaultEnv;
+}
+
 interface ServerConfig {
     application: {
         port: number;
-    }
+    };
     database: {
         typeorm: {
             username: string;
@@ -9,8 +22,10 @@ interface ServerConfig {
             port: number;
             database: string;
             host: string;
-        }
-    },
+            entities: string[];
+            migrations: string[];
+        };
+    };
 }
 
 export const serverConfig: ServerConfig = {
@@ -19,11 +34,23 @@ export const serverConfig: ServerConfig = {
     },
     database: {
         typeorm: {
-            username: "root",
-            password: "admin",
-            port: 3306,
-            database: "mars_rover_db",
-            host: "localhost",
+            username: parseEnvStr("TYPEORM_USERNAME", "root"),
+            password: parseEnvStr("TYPEORM_PASSWORD", "admin"),
+            port: parseEnvInt("TYPEORM_PORT", 3306),
+            database: parseEnvStr("TYPEORM_DATABASE", "mars_rover_db"),
+            host: parseEnvStr("TYPEORM_HOST", "localhost"),
+            entities: [
+                parseEnvStr(
+                    "TYPEORM_ENTITIES",
+                    "../databases/typeorm/entities/**/*.ts",
+                ),
+            ],
+            migrations: [
+                parseEnvStr(
+                    "TYPEORM_MIGRATIONS",
+                    "../databases/typeorm/migrations/**/*.ts",
+                ),
+            ],
         },
     },
 };
