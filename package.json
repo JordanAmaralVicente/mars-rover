@@ -13,7 +13,9 @@
         "start:dev:server": "npm run start:dev --workspace @emana/server",
         
         "start:server": "npm run start --workspace @emana/server",
-        "start:web": "npm run build --workspace @emana/server && serve -s packages/web/build"
+        "start:web": "npm run build --workspace @emana/server && serve -s packages/web/build",
+
+        "start:docker": "docker-compose -f docker/docker-compose.yml up --build"
     },
     "author": "Jordan Italo Amaral Faria"
 }

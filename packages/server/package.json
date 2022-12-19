@@ -6,7 +6,7 @@
       "start:dev": "npm run migration:run && npx nodemon",
       "test": "npx jest --coverage --no-cache --verbose",
       "build": "rimraf ./build && tsc",
-      "start": "ts-node src/index.ts",
+      "start": "node build/index.js",
       "typeorm": "typeorm-ts-node-commonjs",
       "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/databases/typeorm/config/index.ts"
    },
