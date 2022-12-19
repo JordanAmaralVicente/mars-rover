@@ -1,9 +1,44 @@
 version: "3.1"
 services:
-  mars_hovers_db:
+  mars_rovers_db:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: mars_rover
     ports:
       - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+  mars_rovers_server:
+    build:
+      context: ..
+      dockerfile: packages/server/Dockerfile
+    environment:
+      TYPEORM_USERNAME: root
+      TYPEORM_PASSWORD: admin
+      TYPEORM_DATABASE: mars_rover
+      TYPEORM_PORT: 3306
+      TYPEORM_CONNECTION: mysql
+      TYPEORM_HOST: mars_rovers_db
+      TYPEORM_LOGGING: "true"
+      TYPEORM_MIGRATIONS: build/databases/typeorm/migrations/**/*.js
+      TYPEORM_ENTITIES: build/databases/typeorm/entities/**/*.js
+    depends_on:
+      mars_rovers_db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+
+  mars_rovers_web:
+    build:
+      context: ..
+      dockerfile: packages/web/Dockerfile
+    environment:
+      REACT_APP_ENV: production
+      REACT_APP_API_HOST: mars_rovers_server
+      REACT_APP_API_PORT: 8080
+    ports:
+      - 3000:3000
